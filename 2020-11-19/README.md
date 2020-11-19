@@ -57,7 +57,8 @@ The Compilation Step on a high level view is four individual steps: Lexical Anal
 These object files are linked together along with any other third-party libraries to produce final executables/libraries.
 
 To dive deeper into this build process, it's typically referred as Translation Unit which explains these steps in more detail and providing a uniform picture of the entire build process. It has 9 Phases.
-Phase 1: Mapping of individual bytes to 96 base character set.
+
+>Phase 1: Mapping of individual bytes to 96 base character set.
 
 >Phase 2: removal of backslash followed by newline character (splicing of physical new line from source code to logical source code line)
 
