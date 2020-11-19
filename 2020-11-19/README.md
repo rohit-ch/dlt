@@ -21,29 +21,29 @@ Resource files are all other files, which don't contain the programmatic logic b
 e.g. A typical hello program can be organized as follows:
 
 1. hello.h
-#ifndef HELLO_H_INC
+```#ifndef HELLO_H_INC
 #define HELLO_H_INC
 #include <iostream>
 
 void printHello();
-#endif
+#endif```
 
 2. hello.cpp
-#include "hello.h"
+```#include "hello.h"
 
 void printHello()
 {
 	std::cout << "Hello!" << std::endl;
-}
+}```
 
 3. main.cpp
-#include "hello.h"
+```#include "hello.h"
 
 int main()
 {
 	printHello();
 	return 0;
-}
+}```
 
 In this example the declaration for the printHello() function is stored in hello.h header file. The actual definition of the function is provided in corresponding source file hello.cpp, and the function is invoked in another source file named main.cpp .
 
@@ -55,14 +55,22 @@ These object files are linked together along with any other third-party librarie
 
 To dive deeper into this build process, it's typically referred as Translation Unit which explains these steps in more detail and providing a uniform picture of the entire build process. It has 9 Phases.
 Phase 1: Mapping of individual bytes to 96 base character set.
-Phase 2: removal of backslash followed by newline character (splicing of physical new line from source code to logical source code line)
-Phase 3: Decomposition into preprocessing tokens, sequences of whitespaces and comments. Comments are subsequently replaced with single whitespace.
-Phase 4: Macro Expansion and Preprocessing Directives' execution. Additionally recursive follow-up of steps 1 through 4 for each file found in include directive. Finally all the preprocessing directives are removed. (Macros are text replacement in simpler terms.)
-Phase 5: Character and String literals, escape sequences and universal characters in source code are converted to execution character set (it could be UTF-8 or Unicode, constraint being that this character set should support 96 base characters)
-Phase 6: Adjacent strings are concatenated.
-Phase 7: Each preprocessing token is syntactically and semantically analyzed for correctness of program. It is transalted as single translation unit.
-Phase 8: Translated translation unit from phase 7 is typically an object file and it'c converted as instantiation unit.
-Phase 9: All external entity references are resolved. All these are converted together into an executable image.
+
+>Phase 2: removal of backslash followed by newline character (splicing of physical new line from source code to logical source code line)
+
+>Phase 3: Decomposition into preprocessing tokens, sequences of whitespaces and comments. Comments are subsequently replaced with single whitespace.
+
+>Phase 4: Macro Expansion and Preprocessing Directives' execution. Additionally recursive follow-up of steps 1 through 4 for each file found in include directive. Finally all the preprocessing directives are removed. (Macros are text replacement in simpler terms.)
+
+>Phase 5: Character and String literals, escape sequences and universal characters in source code are converted to execution character set (it could be UTF-8 or Unicode, constraint being that this character set should support 96 base characters)
+
+>Phase 6: Adjacent strings are concatenated.
+
+>Phase 7: Each preprocessing token is syntactically and semantically analyzed for correctness of program. It is transalted as single translation unit.
+
+>Phase 8: Translated translation unit from phase 7 is typically an object file and it'c converted as instantiation unit.
+
+>Phase 9: All external entity references are resolved. All these are converted together into an executable image.
 
 Phase 1 through 6 are cosidered as part of Preprocessor. In g++ the output after step 6 can be observed using -E flag.
 	e.g. g++ -std=c++14 -E main.cpp | egrep -v '#' | tee main.i
