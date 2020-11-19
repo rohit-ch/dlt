@@ -26,7 +26,8 @@ e.g. A typical hello program can be organized as follows:
 #include <iostream>
 
 void printHello();
-#endif```
+#endif
+```
 
 2. hello.cpp
 ```#include "hello.h"
@@ -34,7 +35,8 @@ void printHello();
 void printHello()
 {
 	std::cout << "Hello!" << std::endl;
-}```
+}
+```
 
 3. main.cpp
 ```#include "hello.h"
@@ -43,7 +45,8 @@ int main()
 {
 	printHello();
 	return 0;
-}```
+}
+```
 
 In this example the declaration for the printHello() function is stored in hello.h header file. The actual definition of the function is provided in corresponding source file hello.cpp, and the function is invoked in another source file named main.cpp .
 
